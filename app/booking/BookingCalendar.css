@@ -1,0 +1,32 @@
+.rdp-root {
+  --rdp-accent-color: #f0af18;
+  --rdp-accent-background-color: rgba(227, 218, 201, 0.22);
+  color: #f4efe7;
+}
+
+.rdp-button_next,
+.rdp-button_previous {
+  color: #886719 !important;
+}
+
+.rdp-button_next svg,
+.rdp-button_previous svg {
+  fill: #886719 !important;
+  stroke: #886719 !important;
+}
+
+.rdp-today:not(.rdp-selected) .rdp-day_button {
+  color: #f4efe7 !important;
+  border: 1px solid #e3dac9 !important;
+  background: rgba(227, 218, 201, 0.12) !important;
+}
+
+.rdp-selected .rdp-day_button {
+  background: rgba(227, 218, 201, 0.28) !important;
+  border: 1px solid #e3dac9 !important;
+  color: #f4efe7 !important;
+}
+
+.rdp-day_button:hover {
+  background: rgba(227, 218, 201, 0.16) !important;
+}

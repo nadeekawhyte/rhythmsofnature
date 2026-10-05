@@ -35,8 +35,9 @@ export default function BookingDetails({
   onContinue,
 }: BookingDetailsProps) {
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
+    onContinue();
 
     // next booking step
   }

@@ -7,6 +7,8 @@ import Link from "next/link";
 import BookingCalendar from "./BookingCalendar";
 import TimeSlots from "./TimeSlots";
 import BookingDetails from "./BookingDetails";
+import BookingReview from "./BookingReview";
+import BookingConfirmation from "./BookingConfirmation";
 
 export default function Booking() {
 
@@ -15,10 +17,10 @@ export default function Booking() {
   const [selectedTime, setSelectedTime] = useState<string>();
 
   const [details, setDetails] = useState({
-    name: "",
-    email: "",
+    name: "blah",
+    email: "blah@blah",
     countryCode: "+61",
-    phone: "",
+    phone: "blah",
     notes: "",
   });
 
@@ -179,6 +181,23 @@ export default function Booking() {
             setDetails={setDetails}
             onChange={() => setStep("appointment")}
             onContinue={() => setStep("review")}
+          />
+        )}
+
+        {step === "review" && selectedDate && selectedTime && (
+          <BookingReview
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            details={details}
+            onBack={() => setStep("details")}
+            onConfirm={() => setStep("confirmed")}
+          />
+        )}
+
+        {step === "confirmed" && selectedDate && selectedTime && (
+          <BookingConfirmation
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
           />
         )}
 

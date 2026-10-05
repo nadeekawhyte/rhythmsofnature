@@ -16,9 +16,9 @@
 }
 
 .rdp-today:not(.rdp-selected) .rdp-day_button {
-  color: #f4efe7 !important;
-  border: 1px solid #e3dac9 !important;
-  background: rgba(227, 218, 201, 0.12) !important;
+  color: #f0af18 !important;
+  border: none !important;
+  background: transparent !important;
 }
 
 .rdp-selected .rdp-day_button {

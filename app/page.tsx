@@ -158,9 +158,9 @@ export default function Home() {
 
               transition-all
               duration-300
-              hover:scale-105
+              hover:bg-[#f4efe7]/10
               hover:tracking-[0.25em]
-              hover:shadow-lg
+              hover:border-[#f4efe7]/80
               cursor-pointer
             ">
               Begin your journey →

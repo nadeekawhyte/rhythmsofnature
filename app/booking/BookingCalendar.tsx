@@ -1,22 +1,27 @@
 "use client";
 
-import { useState } from "react";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
 import "react-day-picker/dist/style.css";
 import "./BookingCalendar.css";
 
-export default function BookingCalendar() {
-  const [selected, setSelected] = useState<Date>();
+type BookingCalendarProps = {
+  selected?: Date;
+  onSelect: (date: Date | undefined) => void;
+};
 
+export default function BookingCalendar({
+  selected,
+  onSelect,
+}: BookingCalendarProps) {
   return (
-    <div className="mt-6 text-[#f4efe7] scale-[1.28] origin-top-left">
-
-      <DayPicker
-        mode="single"
-        selected={selected}
-        onSelect={setSelected}
-      />
+    <div className="mt-6 text-[#f4efe7]">
+      <div className="scale-[1.28] origin-top-left">
+        <DayPicker
+          mode="single"
+          selected={selected}
+          onSelect={onSelect}
+        />
+      </div>
     </div>
   );
 }

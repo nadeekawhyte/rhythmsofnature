@@ -1,8 +1,28 @@
+"use client"
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import BookingCalendar from "./BookingCalendar";
+import TimeSlots from "./TimeSlots";
+import BookingDetails from "./BookingDetails";
 
 export default function Booking() {
+
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [selectedTime, setSelectedTime] = useState<string>();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("+61");
+  const [phone, setPhone] = useState("");
+  const [notes, setNotes] = useState("");
+
+  const [step, setStep] = useState<
+    "appointment" | "details" | "review" | "confirmed"
+  >("appointment");
+  
   return (
     <main className="bg-white text-black">
       <section className="relative h-screen overflow-hidden">
@@ -68,66 +88,105 @@ export default function Booking() {
         {/* Book Consultation */}
         <div className="absolute left-[25%] top-[18%] z-10 w-[760px]">
 
-        <p
-            className="
-            font-[var(--font-inter)]
-            uppercase
-            tracking-[0.35em]
-            text-[13px]
-            text-[#f4efe7]/80
-            mb-6
-            "
-        >
-            BOOK A CONSULTATION
-        </p>
 
-        <h1
-            className="
-            italic
-            font-light
-            text-[#f7efe4]
-            text-[34px]
-            leading-[0.9]
-            tracking-[0.02em]
-            "
-            style={{
-            fontFamily: "var(--font-hero), serif",
-            textShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-            }}
-        >
-            Select a date and time
-        </h1>
 
-        {/* <div className="flex items-center mt-8 mb-8 w-[520px]">
-            <div className="h-px flex-1 bg-[#e3dac9]/50" />
-            <div className="mx-4 text-[#e3dac9]/70 text-[22px] font-[var(--font-cormorant)]">
-            ✥
-            </div>
-            <div className="h-px flex-1 bg-[#e3dac9]/50" />
-        </div> */}
 
-        <div className="h-8" />
-        <p
-            className="
-            font-[var(--font-inter)]
-            text-[17px]
-            font-light
-            italic
-            leading-[1.75]
-            tracking-[0.01em]
-            text-[#f4efe7]/90
-            max-w-[520px]
-            "
-        >
-            Choose an appointment for your Ayurvedic consultation
-        </p>
-        <BookingCalendar/>
+        {step === "appointment" && (
+          <>
+
+          <p
+              className="
+              font-[var(--font-inter)]
+              uppercase
+              tracking-[0.35em]
+              text-[13px]
+              text-[#f4efe7]/80
+              mb-6
+              "
+          >
+              BOOK A CONSULTATION
+          </p>
+
+          <h1
+              className="
+              italic
+              font-light
+              text-[#f7efe4]
+              text-[34px]
+              leading-[0.9]
+              tracking-[0.02em]
+              "
+              style={{
+              fontFamily: "var(--font-hero), serif",
+              textShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+              }}
+          >
+              Select a date and time
+          </h1>
+
+          {/* <div className="flex items-center mt-8 mb-8 w-[520px]">
+              <div className="h-px flex-1 bg-[#e3dac9]/50" />
+              <div className="mx-4 text-[#e3dac9]/70 text-[22px] font-[var(--font-cormorant)]">
+              ✥
+              </div>
+              <div className="h-px flex-1 bg-[#e3dac9]/50" />
+          </div> */}
+
+          <div className="h-8" />
+          <p
+              className="
+              font-[var(--font-inter)]
+              text-[17px]
+              font-light
+              italic
+              leading-[1.75]
+              tracking-[0.01em]
+              text-[#f4efe7]/90
+              max-w-[520px]
+              "
+          >
+              Choose an appointment for your Ayurvedic consultation
+          </p>
+
+            <BookingCalendar
+              selected={selectedDate}
+              onSelect={(date) => {
+                setSelectedDate(date);
+                setSelectedTime(undefined);
+              }}
+            />
+
+            {selectedDate && (
+              <TimeSlots
+                selectedDate={selectedDate}
+                selectedTime={selectedTime}
+                onSelectTime={setSelectedTime}
+                onContinue={() => setStep("details")}
+              />
+            )}
+          </>
+        )}
+
+        {step === "details" && selectedDate && selectedTime && (
+          <BookingDetails
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            name={name}
+            setName={setName}
+            email={email}
+            setEmail={setEmail}
+            countryCode={countryCode}
+            setCountryCode={setCountryCode}
+            phone={phone}
+            setPhone={setPhone}
+            notes={notes}
+            setNotes={setNotes}
+            onChange={() => setStep("appointment")}
+            onContinue={() => setStep("review")}
+          />
+        )}
 
         </div>
-
-
-
-
 
       </section>
     </main>

@@ -10,19 +10,23 @@ import BookingDetails from "./BookingDetails";
 
 export default function Booking() {
 
+  /* States */
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState<string>();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [countryCode, setCountryCode] = useState("+61");
-  const [phone, setPhone] = useState("");
-  const [notes, setNotes] = useState("");
+  const [details, setDetails] = useState({
+    name: "",
+    email: "",
+    countryCode: "+61",
+    phone: "",
+    notes: "",
+  });
 
-  const [step, setStep] = useState<
-    "appointment" | "details" | "review" | "confirmed"
-  >("appointment");
+  const [step, setStep] = 
+    useState<"appointment" | "details" | "review" | "confirmed"
+            >("appointment");
   
+  /**************************************************************/
   return (
     <main className="bg-white text-black">
       <section className="relative h-screen overflow-hidden">
@@ -171,16 +175,8 @@ export default function Booking() {
           <BookingDetails
             selectedDate={selectedDate}
             selectedTime={selectedTime}
-            name={name}
-            setName={setName}
-            email={email}
-            setEmail={setEmail}
-            countryCode={countryCode}
-            setCountryCode={setCountryCode}
-            phone={phone}
-            setPhone={setPhone}
-            notes={notes}
-            setNotes={setNotes}
+            details={details}
+            setDetails={setDetails}
             onChange={() => setStep("appointment")}
             onContinue={() => setStep("review")}
           />

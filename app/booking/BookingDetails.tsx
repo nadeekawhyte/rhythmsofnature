@@ -119,8 +119,14 @@ export default function BookingDetails({
             <input
               id="name"
               type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
+              value={details.name}
+                onChange={(event) =>
+                /* copy all properties of "details", then replace "name" */
+                setDetails({
+                    ...details,
+                    name: event.target.value,
+                })
+                }
               required
               minLength={2}
               autoComplete="name"
@@ -151,9 +157,13 @@ export default function BookingDetails({
             <input
               id="email"
               type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
+                value={details.email}
+                onChange={(event) =>
+                setDetails({
+                    ...details,
+                    email: event.target.value,
+                })
+                }              required
               autoComplete="email"
               className="
                 w-full
@@ -182,9 +192,14 @@ export default function BookingDetails({
             <div className="flex">
               <select
                 aria-label="Country calling code"
-                value={countryCode}
-                onChange={(event) => setCountryCode(event.target.value)}
-                className="
+                value={details.countryCode}
+                /* copy over all property values of details, but change countrycode*/
+                onChange={(event) =>
+                    setDetails({
+                        ...details,
+                        countryCode: event.target.value,
+                    })
+                }                className="
                   bg-transparent
                   border
                   border-[#e3dac9]/50
@@ -205,9 +220,13 @@ export default function BookingDetails({
               <input
                 id="phone"
                 type="tel"
-                value={phone}
-                onChange={(event) => setPhone(event.target.value)}
-                required
+                value={details.phone}
+                onChange={(event) =>
+                setDetails({
+                    ...details,
+                    phone: event.target.value,
+                })
+                }                required
                 pattern="[0-9 ()+-]{7,20}"
                 title="Please enter a valid phone number"
                 autoComplete="tel"
@@ -240,6 +259,13 @@ export default function BookingDetails({
             id="notes"
             rows={1}
             maxLength={75}
+            value={details.notes}
+            onChange={(event) =>
+            setDetails({
+                ...details,
+                notes: event.target.value,
+            })
+            }
             placeholder=""
             className="
             w-full

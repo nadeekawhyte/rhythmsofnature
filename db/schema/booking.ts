@@ -39,8 +39,8 @@ export const booking = pgTable("booking", {
     .notNull()
     .references(() => appointmentType.id),
 
-  startAt: timestamp("start_at").notNull(),
-  endAt: timestamp("end_at").notNull(),
+  startAt: timestamp("start_at", { withTimezone: true }).notNull(),
+  endAt: timestamp("end_at", { withTimezone: true }).notNull(),
 
   deliveryMode: deliveryMode("delivery_mode").notNull(),
 

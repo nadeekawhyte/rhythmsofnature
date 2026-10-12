@@ -130,13 +130,6 @@ export default function Booking() {
               Select a date and time
           </h1>
 
-          {/* <div className="flex items-center mt-8 mb-8 w-[520px]">
-              <div className="h-px flex-1 bg-[#e3dac9]/50" />
-              <div className="mx-4 text-[#e3dac9]/70 text-[22px] font-[var(--font-cormorant)]">
-              ✥
-              </div>
-              <div className="h-px flex-1 bg-[#e3dac9]/50" />
-          </div> */}
 
           <div className="h-8" />
           <p

@@ -1,0 +1,1 @@
+ALTER TABLE "appointment_type" ADD CONSTRAINT "appointment_type_name_unique" UNIQUE("name");

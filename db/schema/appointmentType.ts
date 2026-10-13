@@ -12,7 +12,7 @@ import { sql } from "drizzle-orm";
 export const appointmentType = pgTable("appointment_type", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
 
-  name: varchar("name", { length: 100 }).notNull(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
   durationMinutes: integer("duration_minutes").notNull(),
   bufferBeforeMinutes: integer("buffer_before_minutes").default(0).notNull(),
   bufferAfterMinutes: integer("buffer_after_minutes").default(0).notNull(),
